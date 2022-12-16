@@ -98,6 +98,7 @@ export async function getStaticProps() {
           heroBackground
         }
         products(first: 4) {
+          id
           name
           price
           slug

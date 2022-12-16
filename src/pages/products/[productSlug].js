@@ -30,7 +30,9 @@ export default function Product({ product }) {
           </div>
           <div className={styles.productContent}>
             <h1>{product.name}</h1>
-            <div className={styles.productDescription} dangerouslySetInnerHTML={{__html: product.description?.html}}/>
+            <div className={styles.productDescription} dangerouslySetInnerHTML={{
+              __html: product.description?.html
+            }} />
               
             <p className={styles.productPrice}>
               ${product.price}
@@ -84,6 +86,7 @@ export async function getStaticProps({ params }) {
 
   console.log('data', data);
   const product = data.data.product;
+
   return {
     props: {
       product
@@ -118,9 +121,6 @@ export async function getStaticPaths() {
       }
     }
   })
-
-
-  console.log('paths', paths);
 
   return {
     paths,
