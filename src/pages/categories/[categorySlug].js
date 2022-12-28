@@ -107,7 +107,7 @@ export async function getStaticProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
 
   const client = new ApolloClient({
     uri: 'https://api-us-west-2.hygraph.com/v2/clbe9wuyy067p01te94i3a4ci/master',
@@ -137,7 +137,17 @@ export async function getStaticPaths() {
   console.log('paths', paths);
 
   return {
-    paths,
+    paths: [
+      ...paths,
+      ...paths.flatMap(path => {
+        return locales.map(locale => {
+          return {
+            ...path,
+            locale
+          }  
+        })
+      })
+    ],
     fallback: false,
   }
 }
