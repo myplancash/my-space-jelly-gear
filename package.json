@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.2",
+    "@cloudinary/url-gen": "^1.8.7",
     "@turf/center": "^6.5.0",
     "@turf/helpers": "^6.5.0",
     "graphql": "^16.6.0",

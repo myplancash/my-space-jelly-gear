@@ -5,12 +5,16 @@ import Header from '@components/Header';
 import Container from '@components/Container';
 import Button from '@components/Button';
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
+import { buildImage } from '@lib/cloudinary'; 
 
 import styles from '@styles/Page.module.scss'
 
 export default function Category({ category, products }) {
+
+  /* const url = cld.image(products[0].image.public_id).toURL();
+  console.log("url", url);
   console.log('category', category);
-  console.log('products', products);
+  console.log('products', products); */
 
   return (
     <Layout>
@@ -26,16 +30,19 @@ export default function Category({ category, products }) {
 
         <ul className={styles.products}>
           {products.map(product => {
+
+            const imageUrl = buildImage(product.image.public_id).resize('w_900,h_900').toURL();
+
             return (
               <li key={product.id}>
               <Link href={`/products/${product.slug}`}>
                 <a>
                   <div className={styles.productImage}>
                     <img 
-                      src={product.image.url} 
+                      src={imageUrl} 
                       alt={product.name} 
-                      width={product.image.width} 
-                      height={product.image.height} 
+                      width='900'
+                      height='900'
                     />
                   </div>
                   <h3 className={styles.productTitle}>

@@ -5,6 +5,8 @@ import Header from '@components/Header';
 import Container from '@components/Container';
 import Button from '@components/Button';
 
+import { buildImage } from '@lib/cloudinary'; 
+
 import styles from '@styles/Product.module.scss'
 import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
 
@@ -24,7 +26,7 @@ export default function Product({ product }) {
             <img 
               width={product.image.width} 
               height={product.image.height} 
-              src={product.image.url} 
+              src={buildImage(product.image.public_id).toURL()} 
               alt={product.name} 
             />
           </div>
